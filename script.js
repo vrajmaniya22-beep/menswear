@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 1,
       name: "Royal Banarasi Silk Kurta Set",
       category: "traditional",
-      price: 89.99,
-      originalPrice: 120.00,
+      price: 2499,
+      originalPrice: 3499,
       badge: "BESTSELLER",
       badgeClass: "badge-hot",
       image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 2,
       name: "Bandhgala Royal Jodhpuri Suit",
       category: "indowestern",
-      price: 189.99,
-      originalPrice: 230.00,
+      price: 5999,
+      originalPrice: 7499,
       badge: "ROYAL",
       badgeClass: "badge-hot",
       image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 3,
       name: "Italian Slim-Fit Two-Piece Suit",
       category: "formal",
-      price: 199.99,
-      originalPrice: 249.99,
+      price: 6499,
+      originalPrice: 7999,
       badge: "POPULAR",
       badgeClass: "badge-new",
       image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80",
@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 4,
       name: "Vintage Indigo Denim Jacket",
       category: "western",
-      price: 89.99,
-      originalPrice: 110.00,
+      price: 2499,
+      originalPrice: 2999,
       badge: "NEW",
       badgeClass: "badge-new",
       image: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80",
@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 5,
       name: "Grand Velvet Zardosi Sherwani",
       category: "traditional",
-      price: 249.99,
-      originalPrice: 299.99,
+      price: 9999,
+      originalPrice: 12999,
       badge: "WEDDING",
       badgeClass: "badge-hot",
       image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 6,
       name: "Asymmetric Fusion Achkan",
       category: "indowestern",
-      price: 159.99,
-      originalPrice: 199.99,
+      price: 4999,
+      originalPrice: 5999,
       badge: "SALE",
       badgeClass: "badge-sale",
       image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 7,
       name: "Executive Velvet Dinner Blazer",
       category: "formal",
-      price: 139.99,
-      originalPrice: 169.99,
+      price: 4499,
+      originalPrice: 5499,
       badge: "HOT",
       badgeClass: "badge-hot",
       image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 8,
       name: "Urban Oversized Streetwear Hoodie",
       category: "western",
-      price: 69.99,
-      originalPrice: 85.00,
+      price: 1999,
+      originalPrice: 2499,
       badge: "NEW",
       badgeClass: "badge-new",
       image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 9,
       name: "Thread-Embroidered Nehru Jacket",
       category: "traditional",
-      price: 69.99,
-      originalPrice: 89.99,
+      price: 1999,
+      originalPrice: 2499,
       badge: "SALE",
       badgeClass: "badge-sale",
       image: "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80",
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 10,
       name: "Designer Fusion Tuxedo Set",
       category: "indowestern",
-      price: 209.99,
-      originalPrice: 249.99,
+      price: 6999,
+      originalPrice: 8499,
       badge: "LIMITED",
       badgeClass: "badge-hot",
       image: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&w=600&q=80",
@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 11,
       name: "Egyptian Cotton Formal Shirt & Trousers",
       category: "formal",
-      price: 79.99,
-      originalPrice: 99.99,
+      price: 2499,
+      originalPrice: 2999,
       badge: "ESSENTIAL",
       badgeClass: "badge-new",
       image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80",
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 12,
       name: "100% Pure Linen Casual Shirt",
       category: "western",
-      price: 59.99,
-      originalPrice: 75.00,
+      price: 1799,
+      originalPrice: 2199,
       badge: "SALE",
       badgeClass: "badge-sale",
       image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80",
@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <h4 class="product-name">${product.name}</h4>
           <div class="product-bottom">
             <div class="product-price">
-              $${product.price.toFixed(2)}
-              ${product.originalPrice ? `<span class="product-price-original">$${product.originalPrice.toFixed(2)}</span>` : ''}
+              ₹${product.price.toLocaleString('en-IN')}
+              ${product.originalPrice ? `<span class="product-price-original">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
             </div>
             <button class="add-cart-btn" data-id="${product.id}" aria-label="Add to Cart">
               <i class="fa-solid fa-plus"></i>
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('modalProductImg').src = product.image;
     document.getElementById('modalProductCat').textContent = `${product.category.toUpperCase()} ATTIRE`;
     document.getElementById('modalProductName').textContent = product.name;
-    document.getElementById('modalProductPrice').textContent = `$${product.price.toFixed(2)}`;
+    document.getElementById('modalProductPrice').textContent = `₹${product.price.toLocaleString('en-IN')}`;
     document.getElementById('modalProductDesc').textContent = product.description;
 
     quickViewModal.classList.add('active');
