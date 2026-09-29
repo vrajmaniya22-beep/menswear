@@ -1,12 +1,11 @@
 /* ==========================================================================
-   Namaskar Men's Wear - Interactive Logic Script
-   Features: Products State, Filter Tabs, Wishlist & Cart Counter, Quick View Modal,
-             Scroll IntersectionObserver, Tilt Effect, Countdown Ticker, Toast System.
+   Namaskar Men's Wear - Core Script & Interactive Logic
+   Proprietor: Jitendra Kalyandas Arora | Location: Bayad, Aravalli, Gujarat
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Product Data (Men's Attire Only: Traditional, Indo-Western, Formal, Western) ---
+  // --- Verified Product Master Data ---
   const products = [
     {
       id: 1,
@@ -14,10 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "traditional",
       price: 2499,
       originalPrice: 3499,
-      badge: "BESTSELLER",
-      badgeClass: "badge-hot",
-      image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
-      description: "Handcrafted pure banarasi silk kurta pajama with intricate hand-embroidery on the collar and cuffs."
+      badge: "Festive Bestseller",
+      badgeType: "gold",
+      image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80",
+      description: "Handcrafted pure Banarasi silk kurta with matching churidar. Features intricate hand-stitched thread embroidery along the mandarin collar and cuffs.",
+      fabric: "Pure Banarasi Silk & Cotton Lining",
+      fit: "Tailored Royal Fit",
+      care: "Dry Clean Only"
     },
     {
       id: 2,
@@ -25,412 +27,290 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "indowestern",
       price: 5999,
       originalPrice: 7499,
-      badge: "ROYAL",
-      badgeClass: "badge-hot",
-      image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",
-      description: "Regal Bandhgala Jodhpuri suit featuring custom brass crest buttons and structured shoulders."
+      badge: "Groom's Special",
+      badgeType: "crimson",
+      image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
+      description: "Regal Bandhgala Jodhpuri jacket featuring custom antique brass crest buttons, padded shoulders, and tapered trousers.",
+      fabric: "Silk-Blend Wool Jacquard",
+      fit: "Structured Slim Fit",
+      care: "Dry Clean Only"
     },
     {
       id: 3,
-      name: "Italian Slim-Fit Two-Piece Suit",
+      name: "Italian Slim-Fit Two-Piece Formal Suit",
       category: "formal",
       price: 6499,
       originalPrice: 7999,
-      badge: "POPULAR",
-      badgeClass: "badge-new",
-      image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80",
-      description: "Precision-tailored wool-blend formal suit designed for boardrooms, receptions, and galas."
+      badge: "Executive Wear",
+      badgeType: "dark",
+      image: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=800&q=80",
+      description: "Precision-cut two-piece formal suit featuring notch lapels, flap pockets, and double rear vents for business and receptions.",
+      fabric: "Super 120s Wool Blend",
+      fit: "Italian Slim Fit",
+      care: "Dry Clean Only"
     },
     {
       id: 4,
-      name: "Vintage Indigo Denim Jacket",
+      name: "Classic Indigo Washed Denim Jacket",
       category: "western",
       price: 2499,
       originalPrice: 2999,
-      badge: "NEW",
-      badgeClass: "badge-new",
-      image: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80",
-      description: "Rugged washed raw denim trucker jacket with metallic hardware and contrast stitching."
+      badge: "Casual Must-Have",
+      badgeType: "dark",
+      image: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=800&q=80",
+      description: "Heavyweight washed raw indigo denim jacket with brass button closure and contrast gold stitching.",
+      fabric: "100% Organic Denim Cotton",
+      fit: "Regular Fit",
+      care: "Machine Wash Cold"
     },
     {
       id: 5,
-      name: "Grand Velvet Zardosi Sherwani",
+      name: "Grand Velvet Zardosi Wedding Sherwani",
       category: "traditional",
       price: 9999,
       originalPrice: 12999,
-      badge: "WEDDING",
-      badgeClass: "badge-hot",
-      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
-      description: "Grand wedding sherwani embroidered with gold zardosi motif, complete with matching churidar."
+      badge: "Bridal Barat Edition",
+      badgeType: "crimson",
+      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+      description: "Royal velvet wedding sherwani meticulously embroidered with zari & zardosi motifs across the chest and cuffs.",
+      fabric: "Micro-Velvet with Zardosi Work",
+      fit: "Bespoke Royal Cut",
+      care: "Specialist Dry Clean"
     },
     {
       id: 6,
-      name: "Asymmetric Fusion Achkan",
+      name: "Asymmetric Fusion Achkan Jacket",
       category: "indowestern",
       price: 4999,
       originalPrice: 5999,
-      badge: "SALE",
-      badgeClass: "badge-sale",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
-      description: "Modern overlap front fusion achkan jacket paired with sharp slim-fit trousers."
+      badge: "Sangeet Special",
+      badgeType: "gold",
+      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+      description: "Contemporary overlap front fusion achkan jacket featuring a sleek asymmetrical button line paired with fitted trousers.",
+      fabric: "Raw Silk Blend",
+      fit: "Modern Slim Fit",
+      care: "Dry Clean Only"
     },
     {
       id: 7,
-      name: "Executive Velvet Dinner Blazer",
+      name: "Midnight Velvet Peak-Lapel Tuxedo Blazer",
       category: "formal",
       price: 4499,
       originalPrice: 5499,
-      badge: "HOT",
-      badgeClass: "badge-hot",
-      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
-      description: "Single-breasted midnight velvet blazer with sleek satin peak lapels."
+      badge: "Evening Gala",
+      badgeType: "dark",
+      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+      description: "Single-breasted midnight velvet blazer with satin peak lapels and a sleek single-button closure.",
+      fabric: "Rich Plush Velvet",
+      fit: "Tailored Fit",
+      care: "Dry Clean Only"
     },
     {
       id: 8,
-      name: "Urban Oversized Streetwear Hoodie",
-      category: "western",
-      price: 1999,
-      originalPrice: 2499,
-      badge: "NEW",
-      badgeClass: "badge-new",
-      image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
-      description: "Heavyweight 400GSM organic cotton hoodie with relaxed dropped shoulder profile."
-    },
-    {
-      id: 9,
-      name: "Thread-Embroidered Nehru Jacket",
-      category: "traditional",
-      price: 1999,
-      originalPrice: 2499,
-      badge: "SALE",
-      badgeClass: "badge-sale",
-      image: "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80",
-      description: "Traditional Modi / Nehru Koti jacket featuring elegant geometric embroidery."
-    },
-    {
-      id: 10,
-      name: "Designer Fusion Tuxedo Set",
-      category: "indowestern",
-      price: 6999,
-      originalPrice: 8499,
-      badge: "LIMITED",
-      badgeClass: "badge-hot",
-      image: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&w=600&q=80",
-      description: "Blending Indian necklines with Western tux tailoring for high-profile evening celebrations."
-    },
-    {
-      id: 11,
-      name: "Egyptian Cotton Formal Shirt & Trousers",
-      category: "formal",
-      price: 2499,
-      originalPrice: 2999,
-      badge: "ESSENTIAL",
-      badgeClass: "badge-new",
-      image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80",
-      description: "Wrinkle-resistant crisp cotton formal shirt paired with tapered pleated trousers."
-    },
-    {
-      id: 12,
-      name: "100% Pure Linen Casual Shirt",
+      name: "100% Pure Organic Linen Casual Shirt",
       category: "western",
       price: 1799,
       originalPrice: 2199,
-      badge: "SALE",
-      badgeClass: "badge-sale",
-      image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80",
-      description: "Breathable lightweight linen casual shirt designed for casual outings and weekend comfort."
+      badge: "Summer Essential",
+      badgeType: "gold",
+      image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80",
+      description: "Breathable pure linen button-down casual shirt with spread collar and curved hem line.",
+      fabric: "100% European Flax Linen",
+      fit: "Relaxed Fit",
+      care: "Gentle Hand Wash"
     }
   ];
 
-  // State
+  // --- State Management ---
   let wishlist = new Set();
   let cartCount = 0;
 
-  // DOM Elements
+  // --- DOM Elements ---
   const productsGrid = document.getElementById('productsGrid');
   const wishlistCountEl = document.getElementById('wishlistCount');
   const cartCountEl = document.getElementById('cartCount');
-  const navbar = document.getElementById('navbar');
+  const modal = document.getElementById('quickViewModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  
+  // Mobile Navigation
   const mobileToggle = document.getElementById('mobileToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
-  const quickViewModal = document.getElementById('quickViewModal');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
 
-  // --- Render Product Cards ---
+  if (mobileToggle && mobileDrawer) {
+    mobileToggle.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('open');
+    });
+  }
+
+  // Render Products into Grid
   function renderProducts(filterCategory = 'all') {
     if (!productsGrid) return;
-    productsGrid.innerHTML = '';
 
     const filtered = filterCategory === 'all' 
       ? products 
       : products.filter(p => p.category === filterCategory);
 
-    filtered.forEach((product, idx) => {
-      const isWishlisted = wishlist.has(product.id);
-
-      const card = document.createElement('div');
-      card.className = 'product-card fade-up in-view';
-      card.style.transitionDelay = `${(idx % 4) * 0.1}s`;
-
-      card.innerHTML = `
+    productsGrid.innerHTML = filtered.map(product => `
+      <article class="product-card" data-id="${product.id}">
         <div class="product-img-wrap">
-          <span class="product-badge ${product.badgeClass}">${product.badge}</span>
-          <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" data-id="${product.id}" aria-label="Add to Wishlist">
-            <i class="fa-${isWishlisted ? 'solid' : 'regular'} fa-heart"></i>
+          <img src="${product.image}" alt="${product.name} - Namaskar Men's Wear Bayad" class="product-img" loading="lazy" width="600" height="800">
+          <span class="product-badge ${product.badgeType}">${product.badge}</span>
+          <button class="wishlist-btn ${wishlist.has(product.id) ? 'active' : ''}" data-id="${product.id}" aria-label="Add to wishlist">
+            <i class="${wishlist.has(product.id) ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
           </button>
-          <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy">
-          <button class="quick-view-btn" data-id="${product.id}">QUICK VIEW</button>
         </div>
-        <div class="product-info">
-          <span class="product-category">${product.category.toUpperCase()} SELECTION</span>
-          <h4 class="product-name">${product.name}</h4>
-          <div class="product-bottom">
-            <div class="product-price">
-              ₹${product.price.toLocaleString('en-IN')}
-              ${product.originalPrice ? `<span class="product-price-original">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+        <div class="product-content">
+          <div>
+            <div class="product-cat">${product.category.toUpperCase()} WEAR</div>
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-desc-snippet">${product.fabric}</p>
+            <div class="product-price-row">
+              <span class="price-current">₹${product.price.toLocaleString('en-IN')}</span>
+              <span class="price-original">₹${product.originalPrice.toLocaleString('en-IN')}</span>
             </div>
-            <button class="add-cart-btn" data-id="${product.id}" aria-label="Add to Cart">
-              <i class="fa-solid fa-plus"></i>
-            </button>
+          </div>
+          <div class="product-actions">
+            <button class="btn-quickview" data-id="${product.id}">Quick View</button>
+            <button class="btn-addcart" data-id="${product.id}">Add To Cart</button>
           </div>
         </div>
-      `;
+      </article>
+    `).join('');
 
-      productsGrid.appendChild(card);
-    });
-
-    attachProductEvents();
+    bindProductEvents();
   }
 
-  // --- Event Listeners for Product Actions ---
-  function attachProductEvents() {
+  // Event Handlers for Product Action Buttons
+  function bindProductEvents() {
+    // Quick View Buttons
+    document.querySelectorAll('.btn-quickview').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productId = parseInt(e.target.dataset.id);
+        openQuickViewModal(productId);
+      });
+    });
+
+    // Add To Cart Buttons
+    document.querySelectorAll('.btn-addcart').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productId = parseInt(e.target.dataset.id);
+        const product = products.find(p => p.id === productId);
+        cartCount++;
+        if (cartCountEl) cartCountEl.textContent = cartCount;
+        showToast(`Added "${product ? product.name : 'Attire'}" to your shopping bag.`);
+      });
+    });
+
     // Wishlist Buttons
     document.querySelectorAll('.wishlist-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = parseInt(btn.getAttribute('data-id'));
-        if (wishlist.has(id)) {
-          wishlist.delete(id);
-          btn.classList.remove('active');
-          btn.querySelector('i').className = 'fa-regular fa-heart';
-          showToast('Removed from Wishlist', 'info');
+        const btnEl = e.currentTarget;
+        const productId = parseInt(btnEl.dataset.id);
+        if (wishlist.has(productId)) {
+          wishlist.delete(productId);
+          btnEl.classList.remove('active');
+          btnEl.querySelector('i').className = 'fa-regular fa-heart';
+          showToast(`Removed from wishlist.`);
         } else {
-          wishlist.add(id);
-          btn.classList.add('active');
-          btn.querySelector('i').className = 'fa-solid fa-heart';
-          showToast('Added to Wishlist! ❤️', 'success');
+          wishlist.add(productId);
+          btnEl.classList.add('active');
+          btnEl.querySelector('i').className = 'fa-solid fa-heart';
+          showToast(`Saved to your wishlist!`);
         }
-        wishlistCountEl.textContent = wishlist.size;
-      });
-    });
-
-    // Add to Cart Buttons
-    document.querySelectorAll('.add-cart-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        cartCount++;
-        cartCountEl.textContent = cartCount;
-        showToast('Added to Cart! 🛍️', 'success');
-      });
-    });
-
-    // Quick View Buttons
-    document.querySelectorAll('.quick-view-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = parseInt(btn.getAttribute('data-id'));
-        openQuickView(id);
+        if (wishlistCountEl) wishlistCountEl.textContent = wishlist.size;
       });
     });
   }
 
-  // --- Quick View Modal Functionality ---
-  function openQuickView(productId) {
+  // Quick View Modal
+  function openQuickViewModal(productId) {
     const product = products.find(p => p.id === productId);
-    if (!product) return;
+    if (!product || !modal) return;
 
     document.getElementById('modalProductImg').src = product.image;
-    document.getElementById('modalProductCat').textContent = `${product.category.toUpperCase()} ATTIRE`;
+    document.getElementById('modalProductImg').alt = product.name;
+    document.getElementById('modalProductCat').textContent = product.category.toUpperCase() + ' ATTIRE';
     document.getElementById('modalProductName').textContent = product.name;
     document.getElementById('modalProductPrice').textContent = `₹${product.price.toLocaleString('en-IN')}`;
     document.getElementById('modalProductDesc').textContent = product.description;
-
-    quickViewModal.classList.add('active');
-    quickViewModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeQuickView() {
-    quickViewModal.classList.remove('active');
-    quickViewModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeQuickView);
-  if (quickViewModal) {
-    quickViewModal.addEventListener('click', (e) => {
-      if (e.target === quickViewModal) closeQuickView();
-    });
-  }
-
-  const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
-  if (modalAddToCartBtn) {
-    modalAddToCartBtn.addEventListener('click', () => {
-      cartCount++;
-      cartCountEl.textContent = cartCount;
-      showToast('Added to Shopping Bag! 🛍️', 'success');
-      closeQuickView();
-    });
-  }
-
-  // Size Selector in Modal
-  document.querySelectorAll('.size-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-
-  // --- Category Filter Tabs ---
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const category = btn.getAttribute('data-filter');
-      renderProducts(category);
-    });
-  });
-
-  // --- Sticky Navbar Scroll Effect ---
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    
+    // Add Fabric and Fit info to modal if element exists
+    const modalDetails = document.querySelector('.modal-details');
+    let extraInfo = document.getElementById('modalExtraSpecs');
+    if (!extraInfo && modalDetails) {
+      extraInfo = document.createElement('div');
+      extraInfo.id = 'modalExtraSpecs';
+      extraInfo.style.fontSize = '0.85rem';
+      extraInfo.style.margin = '12px 0';
+      extraInfo.style.color = '#64748B';
+      modalDetails.insertBefore(extraInfo, document.querySelector('.size-selector')?.parentNode);
     }
-  });
+    if (extraInfo) {
+      extraInfo.innerHTML = `<strong>Fabric:</strong> ${product.fabric} | <strong>Fit:</strong> ${product.fit}`;
+    }
 
-  // --- Mobile Drawer Toggle ---
-  if (mobileToggle) {
-    mobileToggle.addEventListener('click', () => {
-      mobileToggle.classList.toggle('open');
-      mobileDrawer.classList.toggle('open');
-      const isOpen = mobileDrawer.classList.contains('open');
-      mobileToggle.setAttribute('aria-expanded', isOpen);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', () => {
+      if (modal) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
     });
   }
 
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileToggle.classList.remove('open');
-      mobileDrawer.classList.remove('open');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  // Filter Buttons Handler
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const filter = e.target.dataset.filter;
+      renderProducts(filter);
     });
   });
 
-  // --- Toast Notification System ---
-  function showToast(message, type = 'success') {
-    const toastContainer = document.getElementById('toastContainer');
-    if (!toastContainer) return;
+  // Size Selector Handler inside Modal
+  const sizeBtns = document.querySelectorAll('.size-btn');
+  sizeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      sizeBtns.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+    });
+  });
+
+  // Toast Notification System
+  function showToast(message) {
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'toastContainer';
+      container.className = 'toast-container';
+      document.body.appendChild(container);
+    }
 
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `
-      <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}" style="color: var(--pink);"></i>
-      <span>${message}</span>
-    `;
-
-    toastContainer.appendChild(toast);
+    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--gold);"></i> <span>${message}</span>`;
+    container.appendChild(toast);
 
     setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateX(100%)';
-      setTimeout(() => toast.remove(), 300);
-    }, 3000);
+      toast.remove();
+    }, 3500);
   }
 
-  // --- Newsletter Submission ---
-  const newsletterForm = document.getElementById('newsletterForm');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const emailInput = document.getElementById('newsletterEmail');
-      if (emailInput && emailInput.value) {
-        showToast('Subscribed! Welcome to Namaskar Men\'s Wear 🎉', 'success');
-        emailInput.value = '';
-      }
-    });
-  }
-
-  // --- Festival Countdown Timer Ticker ---
-  function updateCountdown() {
-    const daysEl = document.getElementById('cdDays');
-    const hoursEl = document.getElementById('cdHours');
-    const minsEl = document.getElementById('cdMins');
-    const secsEl = document.getElementById('cdSecs');
-
-    if (!daysEl) return;
-
-    let seconds = parseInt(secsEl.textContent) - 1;
-    let minutes = parseInt(minsEl.textContent);
-    let hours = parseInt(hoursEl.textContent);
-    let days = parseInt(daysEl.textContent);
-
-    if (seconds < 0) {
-      seconds = 59;
-      minutes--;
-    }
-    if (minutes < 0) {
-      minutes = 59;
-      hours--;
-    }
-    if (hours < 0) {
-      hours = 23;
-      days--;
-    }
-
-    secsEl.textContent = seconds < 10 ? '0' + seconds : seconds;
-    minsEl.textContent = minutes < 10 ? '0' + minutes : minutes;
-    hoursEl.textContent = hours < 10 ? '0' + hours : hours;
-    daysEl.textContent = days < 10 ? '0' + days : days;
-  }
-
-  setInterval(updateCountdown, 1000);
-
-  // --- IntersectionObserver Scroll Animations ---
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // --- Button Ripple Animation Effect ---
-  document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function (e) {
-      const circle = document.createElement('span');
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-
-      const rect = button.getBoundingClientRect();
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${e.clientX - rect.left}px`;
-      circle.style.top = `${e.clientY - rect.top}px`;
-      circle.classList.add('ripple');
-
-      const ripple = button.getElementsByClassName('ripple')[0];
-      if (ripple) ripple.remove();
-
-      button.appendChild(circle);
-    });
-  });
-
-  // --- Initial Render ---
+  // Initial Product Render
   renderProducts('all');
 });
