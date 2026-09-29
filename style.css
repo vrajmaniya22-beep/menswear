@@ -209,7 +209,7 @@ button {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  padding: 14px 0;
+  padding: 10px 0;
   transition: all var(--transition-fast);
 }
 
@@ -226,7 +226,7 @@ button {
 }
 
 .logo-img {
-  height: 60px;
+  height: 95px;
   width: auto;
   object-fit: contain;
   mix-blend-mode: multiply;
@@ -234,13 +234,13 @@ button {
 }
 
 .logo-img:hover {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .footer .logo-img {
   filter: invert(1);
   mix-blend-mode: screen;
-  height: 64px;
+  height: 110px;
 }
 
 .nav-links {
