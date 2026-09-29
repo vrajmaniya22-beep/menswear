@@ -226,9 +226,21 @@ button {
 }
 
 .logo-img {
-  height: 64px;
+  height: 60px;
   width: auto;
   object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform var(--transition-fast);
+}
+
+.logo-img:hover {
+  transform: scale(1.04);
+}
+
+.footer .logo-img {
+  filter: invert(1);
+  mix-blend-mode: screen;
+  height: 64px;
 }
 
 .nav-links {
